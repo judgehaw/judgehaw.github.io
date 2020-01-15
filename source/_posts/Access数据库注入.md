@@ -1,10 +1,9 @@
-﻿---
+---
 title: Access数据库注入
 date: 2018-10-26
 tags: 渗透
-categories: "渗透——Access数据库注入"
+categories: "渗透"
 ---
-
 
 ------
 
