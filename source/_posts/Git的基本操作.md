@@ -23,7 +23,7 @@ categories: "git"
 &ensp; &ensp; 这三个区域分别对应不同的状态，这个状态我们可以在Git Bash中使用命令`git status`来查看。
 
 
-> 工作区：工作区是我们在编辑代码文档等的区域，在这个区域我们可以使用`git status`查看到当前修改过或新增的文件都为红色字体，我们可以通过其显示的状态来确定当前文件有没有被修改“Untracked files”.
+> 工作区：工作区是我们在编辑代码文档等的区域，在这个区域我们可以使用`git status`查看到当前修改过或新增的文件都为红色字体，我们可以通过其显示的状态来确定当前文件有没有被修改“Untracked files”。
 
 
 > 暂存区：暂存区是我们可以将编辑好的文档等暂时保存的区域，将工作区的文档等提交暂存区的命令`git add /路径/文件名`，这时候我们使用`git status`可以看到绿色字体，里面是我们创建并提交到暂存区的文件。
@@ -43,7 +43,7 @@ categories: "git"
 
 &ensp; &ensp; 怎样将GitHub跟本机使用ssh建立连接可以看前面搭建博客第一篇的内容，里面有介绍。
 
-&ensp; &ensp; 在我们跟GitHub项目建立连接之后，使用`git remote -v`来查看远程项目地址，之后 我们使用`git pull`可以直接将GitHub项目仓库中的所有内容都拉取到本地并跟当前合并，这个命令跟`git fetch`结果相似，不过有所不同，不同之处[点击这里](https://www.cnblogs.com/runnerjack/p/9342362.html)
+&ensp; &ensp; 在我们跟GitHub项目建立连接之后，使用`git remote -v`来查看远程项目地址，之后 我们使用`git pull`可以直接将GitHub项目仓库中的所有内容都拉取到本地并跟当前合并，这个命令跟`git fetch`结果相似，不过有所不同，不同之处[点击这里](https://www.cnblogs.com/runnerjack/p/9342362.html)。
 
 &ensp; &ensp; 当我们拉取结束之后，我们就可以使用`git branch -a`查看到我们本地和远端的所有分支了，红颜色的代表远端分支，`git branch -r`只查看远程分支。
 
