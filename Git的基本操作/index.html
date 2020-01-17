@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Judgehaw">
 <meta property="og:description" content="git的基本框架">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-17T03:00:01.304Z">
+<meta property="og:updated_time" content="2020-01-17T03:11:41.256Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git的基本操作">
 <meta name="twitter:description" content="git的基本框架">
@@ -369,7 +369,7 @@
 <p>&ensp; &ensp; 在我们创建好工作目录之后，在Git Bash中使用命令<code>git init</code>在当前目录生成本地git版本库，hooks：存放一些shell脚本，Info：exclude：存放仓库的一些信息，logs：保存所有更新的引用记录，objects：存放所有的git对象，config：git仓库的配置文件，description：仓库的描述信息，主要给gitweb等git托管系统使用，index：暂存区（stage）一个二进制文件，HEAD：映射到ref引用，能够找到下一次commit的前一次哈希值，ORIG_HEAD:HEAD指针的前一个状态..等等。</p>
 <p>&ensp; &ensp; 本地仓库分区三个区域：工作区、暂存区、仓库。<br>&ensp; &ensp; 这三个区域分别对应不同的状态，这个状态我们可以在Git Bash中使用命令<code>git status</code>来查看。</p>
 <blockquote>
-<p>工作区：工作区是我们在编辑代码文档等的区域，在这个区域我们可以使用<code>git status</code>查看到当前修改过或新增的文件都为红色字体，我们可以通过其显示的状态来确定当前文件有没有被修改“Untracked files”.</p>
+<p>工作区：工作区是我们在编辑代码文档等的区域，在这个区域我们可以使用<code>git status</code>查看到当前修改过或新增的文件都为红色字体，我们可以通过其显示的状态来确定当前文件有没有被修改“Untracked files”。</p>
 </blockquote>
 <blockquote>
 <p>暂存区：暂存区是我们可以将编辑好的文档等暂时保存的区域，将工作区的文档等提交暂存区的命令<code>git add /路径/文件名</code>，这时候我们使用<code>git status</code>可以看到绿色字体，里面是我们创建并提交到暂存区的文件。</p>
@@ -381,7 +381,7 @@
 <h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><p>&ensp; &ensp; 我们可以使用<code>git branch -a</code>来查看当前的所有分支包括远端仓库分支，绿色前面带*的是我们当前分支。</p>
 <p>&ensp; &ensp; 分支的作用：几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。</p>
 <h4 id="如何连接GitHub仓库分支"><a href="#如何连接GitHub仓库分支" class="headerlink" title="如何连接GitHub仓库分支"></a>如何连接GitHub仓库分支</h4><p>&ensp; &ensp; 怎样将GitHub跟本机使用ssh建立连接可以看前面搭建博客第一篇的内容，里面有介绍。</p>
-<p>&ensp; &ensp; 在我们跟GitHub项目建立连接之后，使用<code>git remote -v</code>来查看远程项目地址，之后 我们使用<code>git pull</code>可以直接将GitHub项目仓库中的所有内容都拉取到本地并跟当前合并，这个命令跟<code>git fetch</code>结果相似，不过有所不同，不同之处<a href="https://www.cnblogs.com/runnerjack/p/9342362.html" target="_blank" rel="noopener">点击这里</a></p>
+<p>&ensp; &ensp; 在我们跟GitHub项目建立连接之后，使用<code>git remote -v</code>来查看远程项目地址，之后 我们使用<code>git pull</code>可以直接将GitHub项目仓库中的所有内容都拉取到本地并跟当前合并，这个命令跟<code>git fetch</code>结果相似，不过有所不同，不同之处<a href="https://www.cnblogs.com/runnerjack/p/9342362.html" target="_blank" rel="noopener">点击这里</a>。</p>
 <p>&ensp; &ensp; 当我们拉取结束之后，我们就可以使用<code>git branch -a</code>查看到我们本地和远端的所有分支了，红颜色的代表远端分支，<code>git branch -r</code>只查看远程分支。</p>
 <p>&ensp; &ensp; 切换分支<code>git checkout origin/分支名称</code>，切换分支之后我们命令行右上角会看到当前分支的名称，或者使用<code>git branch -a</code>来查看当前分支。</p>
 <hr>
