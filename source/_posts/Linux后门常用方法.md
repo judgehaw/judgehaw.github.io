@@ -15,6 +15,11 @@ categories:  "安全"
 
 - 增加超级用户帐号
 - 破解/嗅控用户密码
+
+
+
+<!-- more -->
+
 - 放置SUID Shell****
 - 利用系统服务程序
 - TCP/UDP/ICMP Shell
