@@ -74,10 +74,26 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 #theme: next
-theme: next
+theme: ayer
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
+
+
+#feed:
+#    type: atom
+#    path: atom.xml
+#    limit: 20
+#    hub:
+#    content:
+#    content_limit: 140
+#    content_limit_delim: ' '
+#    order_by: -date
+
+
 deploy:
   type: git
-  repository: git@github.com:judgehaw/judgehaw.github.io.git
+  repo:
+    coding: e.coding.net/judgehaw/judgehaw.git
+    github: github.com/judgehaw/judgehaw.github.io.git
+#  repository: git@github.com:judgehaw/judgehaw.github.io.git
   branch: master

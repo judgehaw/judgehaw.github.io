@@ -1,6 +1,7 @@
 ---
-title: cms，暴库，后台查找，密码破解
+title: cms，暴库，后台查找
 date: 2018-10-25 09:23:00
+copyright: true
 tags: 渗透
 categories: "渗透" 
 ---
