@@ -1,5 +1,5 @@
 ---
-title: python_01
+title: Python掷骰子实例
 copyright: true
 date: 2020-05-07 11:42:14
 tags: python

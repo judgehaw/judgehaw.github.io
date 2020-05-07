@@ -1,5 +1,5 @@
 ---
 title: 分类
-type: category
+type: categories
 layout: "categories"
 ---

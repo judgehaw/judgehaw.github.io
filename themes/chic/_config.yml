@@ -4,8 +4,8 @@ navname: JudgeHaw's Blog
 # navigatior items
 nav:
   Posts: /archives
-  Categories: /categories
-  Tags: /tags
+  Categories: /category
+  Tags: /tag
   About: /about
 
 # favicon

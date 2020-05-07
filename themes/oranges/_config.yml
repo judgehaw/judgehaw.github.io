@@ -1,0 +1,128 @@
+# 相关配置说明
+  # favicon: 网站图标
+  # avatar: 主题用户头像与昵称
+  # rss: rss订阅
+  # gtag: Google 分析
+  # comments: 文章评论系统
+    # gitalk
+    # disqus
+  # navbar: 主题页面导航栏
+  # catalog: 文章目录
+  # friends: 友链
+  # footer: 页脚信息
+
+# enable: 是否开启相应功能，可选true & false
+
+# 网站图标
+favicon:
+  enable: true
+  icon: /images/favicon.ico
+  touch_icon: /images/favicon.ico
+
+# 用户头像与昵称
+avatar:
+  author_photo: /images/head.png
+  author_nickname: JudgeHaw
+
+# rss订阅
+rss:
+  enable: true
+
+# Google Analytics
+gtag:
+  enable: false
+  gtagkey:
+
+# 文章评论系统
+comments:
+  enable: true
+  # 目前仅支持disqus评论
+  # disqus 需科学上网方可使用
+  disqus:
+    # https://disqus.com/
+    # 注册账号，获取shortname.disqus.com，shortname为你定义的唯一name
+    # 举个例子：我注册配置完毕后的网址为zcheng.disqus.com，将zcheng填入即可
+    enable: true
+    shortname: zcheng
+
+# 主题页面导航栏
+navbar:
+  -
+    name: 主页
+    enable: true
+    path: /
+  -
+    name: 归档
+    enable: true
+    path: /archives/
+  -
+    name: 分类
+    enable: true
+    path: /categories/
+  -
+    name: 标签
+    enable: true
+    path: /tags/
+  #-
+  #  name: 朋友
+   # enable: true
+   # path: /friends/
+  -
+    name: 关于我
+    enable: true
+    path: /about/
+
+# 文章目录
+catalog:
+  enable: true
+
+# 友链详细信息：支持多个友链
+friends:
+  # nickname: 昵称
+  # site: 地址
+  # meta: 描述
+  -
+    nickname: 张馆长
+    site: https://www.zhangguanzhang.com/
+    meta:
+
+# 页脚信息
+footer:
+  # social: 社交方式
+  # more: 更多页脚信息
+  social:
+    # name: 名称
+    # icon: 图标，目前仅支持IconFont部分图标
+    # path: 地址
+    -
+      name: github
+      icon: github
+      path: https://github.com/judgehaw
+    -
+      name: email
+      icon: envelope
+      path: judgehaw@163.com
+    #-
+      #name: facebook
+      #icon: facebooksquare
+      #path:
+    #-
+      #name: twitter
+      #icon: twitter
+      #path:
+    -
+      name: 微信
+      icon: wechat
+      path:
+    #-
+      #name: 微博
+      #icon: weibo
+      #path:
+
+  more:
+    -
+      name: Copyright © Oranges 2020
+      path: https://github.com/judgehaw
+    #-
+      #name: Theme by Oranges | Powered by Hexo
+      #path: https://github.com/judgehaw

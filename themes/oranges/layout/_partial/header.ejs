@@ -1,0 +1,65 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="oranges, 1451426471@qq.com" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <% if(is_home() && page.current > 1){ %>
+    <meta name="robots" content="noindex" />
+  <% } %>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = '归档';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = '分类: ' + page.category;
+  } else if (is_tag()){
+    title = '标签: ' + page.tag;
+  } else if (title === "about") {
+    title = "关于"
+  } else if (title === "tags") {
+    title = "标签"
+  } else if (title === "categories") {
+    title = "分类"
+  } else if (title === "friends") {
+    title = "朋友"
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+
+  <% if (theme.favicon.enable){ %>
+    <link rel="apple-touch-icon" href="<%- theme.favicon.touch_icon %>">
+    <link rel="icon" href="<%- theme.favicon.icon %>">
+  <% } %>
+
+  <% if (theme.rss.enable){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- css -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <%- css(['/css/base.css', '/iconfont/iconfont.css', '/css/github-markdown.css', '/css/highlight.css']) %>
+
+  <!-- script -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <% if(theme.gtag.enable) { %>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%- theme.gtag.gtagkey %>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '<%- theme.gtag.gtagkey %>');
+    </script>
+  <% } %>
+</head>
