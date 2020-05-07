@@ -1,380 +1,123 @@
 <!DOCTYPE html>
+<html lang="zh-CN">
 
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
-
-
-
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="oranges, 1451426471@qq.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   
   
-    
-    
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/tubiao.jpg?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/tubiao.jpg?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/tubiao.jpg?v=5.1.4">
-
-
-
-
-
-
-  <meta name="keywords" content="渗透,">
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="介绍 微软开发的小型数据库，全名：Microsoft Office Access   打开工具： 辐臣数据库浏览器，破障浏览器">
-<meta name="keywords" content="渗透">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Access数据库注入">
-<meta property="og:url" content="http://judgehaw/judgehaw.github.io/Access数据库注入/index.html">
-<meta property="og:site_name" content="JudgeHaw">
-<meta property="og:description" content="介绍 微软开发的小型数据库，全名：Microsoft Office Access   打开工具： 辐臣数据库浏览器，破障浏览器">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-16T06:56:51.596Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Access数据库注入">
-<meta name="twitter:description" content="介绍 微软开发的小型数据库，全名：Microsoft Office Access   打开工具： 辐臣数据库浏览器，破障浏览器">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://judgehaw/judgehaw.github.io/Access数据库注入/">
-
-
-
-
-
   <title>Access数据库注入 | JudgeHaw</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico">
   
 
+  
+    <link rel="alternate" href="[object Object]" title="JudgeHaw" type="application/atom+xml">
+  
 
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 
+  <!-- css -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
 
+  <!-- script -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
 
-
-
-
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">JudgeHaw</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/"><img src="/images/head.png" alt=""></a>
+    <div class="nickname"><a href="/">JudgeHaw</a></div>
   </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">归档</a>
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          <a href="/categories/">分类</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">标签</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">关于我</a>
+        </li>
+      
+    </ul>
   </div>
 </div>
 
-<nav class="site-nav">
-  
+<script>
+  let navs = document.querySelectorAll('.nav-item');
+  let pagePath = window.location.pathname;
+  for(let nav of navs) {
+    let navPath = nav.getAttribute("data-path");
+    if(navPath && navPath === pagePath) {
+      nav.className = "nav-item active";
+    }
+  }
+</script>
 
-  
-    <ul id="menu" class="menu">
-      
+
+      <div class="flex-container">
+        <!-- ejs文件，建议切换编辑器plain text为html查看更佳 -->
+<!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+
+
+
+
+
+
+
+<!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+<div class="container post-details" id="post-details">
+  <div class="post-content">
+    <div class="post-title">Access数据库注入</div>
+    <div class="post-attach">
+      <span class="post-pubtime">2018-10-26</span>
+      <span class="post-tags">
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://judgehaw/judgehaw.github.io/Access数据库注入/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="沈宴">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JudgeHaw">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Access数据库注入</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-26T00:00:00+08:00">
-                2018-10-26
-              </time>
-            
-
-            
-
-            
+          <i class="iconfont icon-tags"></i>
+          
+          <span class="span--tag">
+            <a href="/tags/渗透/">
+              #渗透
+            </a>
           </span>
-
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/渗透/" itemprop="url" rel="index">
-                    <span itemprop="name">渗透</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <hr>
-<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
-<p>微软开发的小型数据库，全名：Microsoft Office Access</p>
-</blockquote>
-<ul>
-<li>打开工具：<blockquote>
-<p>辐臣数据库浏览器，破障浏览器</p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<a id="more"></a>
-<h3 id="判断注入"><a href="#判断注入" class="headerlink" title="判断注入"></a>判断注入</h3><ul>
+        
+      </span>
+    </div>
+    <div class="markdown-body">
+      <h3 id="判断注入"><a href="#判断注入" class="headerlink" title="判断注入"></a>判断注入</h3><ul>
 <li><code>&#39;</code></li>
 <li><code>and 1=1</code></li>
 <li><code>and 1=2</code></li>
@@ -411,466 +154,193 @@
 <li><code>and (select len(admin) from admin)=5</code>如果返回正常，则账户长度是为5</li>
 <li><code>and (select len(password) from admin)=5</code>如果返回正常，则密码长度是为5</li>
 </ul>
-
-      
-    </div>
-    
-    
-    
-	<div>
-	  
-	    <div>
-    
-        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
-    
-</div>
-	  
-	</div>
-	<div>
-      
-        
-      
-	</div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/渗透/" rel="tag"><i class="fa fa-tag"></i> 渗透</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/判断cms，暴库漏洞，后台查找，密码破解/" rel="next" title="cms，暴库，后台查找，密码破解">
-                <i class="fa fa-chevron-left"></i> cms，暴库，后台查找，密码破解
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Centos系统搭建seafile私有云盘/" rel="prev" title="Centos系统搭建seafile私有云盘">
-                Centos系统搭建seafile私有云盘 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
     </div>
   </div>
-
-
-          </div>
-          
-
-
-          
-
   
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="沈宴">
-            
-              <p class="site-author-name" itemprop="name">沈宴</p>
-              <p class="site-description motion-element" itemprop="description">6.28</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">10</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/judgehaw" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:judgehaw@163.com" target="_blank" title="邮箱">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                友情链接
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://zhangguanzhang.com" title="张馆长" target="_blank">张馆长</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断注入"><span class="nav-number">2.</span> <span class="nav-text">判断注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断数据库类型"><span class="nav-number">3.</span> <span class="nav-text">判断数据库类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断数据库表"><span class="nav-number">4.</span> <span class="nav-text">判断数据库表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断数据库表中的字段名"><span class="nav-number">5.</span> <span class="nav-text">判断数据库表中的字段名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断字段长度"><span class="nav-number">6.</span> <span class="nav-text">判断字段长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断账户密码长度"><span class="nav-number">7.</span> <span class="nav-text">判断账户密码长度</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">沈宴</span>
-
-  
+<div class="post-catalog" id="catalog">
+  <div class="title">目录</div>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断注入"><span class="toc-text">判断注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断数据库类型"><span class="toc-text">判断数据库类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断数据库表"><span class="toc-text">判断数据库表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断数据库表中的字段名"><span class="toc-text">判断数据库表中的字段名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断字段长度"><span class="toc-text">判断字段长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断账户密码长度"><span class="toc-text">判断账户密码长度</span></a></li></ol>
 </div>
 
-<!-- 
-  <div class="powered-by"></div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info"></div>
-
--->
-<div>
-	<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	<span id="busuanzi_container_site_pv" style="display:none">
-		本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
-    <span class="post-meta-divider">|</span>
-	</span>
-	<span id="busuanzi_container_site_uv" style="display:none">
-		有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
-	</span>
-</div>
-
-
-        
-<div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user">本站访客数</i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      人次
-    </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye">本站总访问量</i>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      次
-    </span>
-  
-</div>
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+<script>
+  var catalog = null;
+  var catalogTopHeight = null;
+  function handleScoll() {
+    catalog = document.getElementById("catalog");
+    catalogTopHeight = catalog.offsetTop;
   }
+
+  function changePos() {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    if (scrollTop > catalogTopHeight - 20) {
+      catalog.style = "position: fixed; top: 20px;"
+    } else {
+      catalog.style = "position: absolute; top: calc(290px + 88px + 30px)"
+    }
+  }
+
+  function isActiveCat() {
+    // 可宽限高度值
+    let offsetHeight = 20
+
+    // 当前页面滚动位置距页面顶部的高度值
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+
+    // 页面所有标题列表
+    let headerLinkList = document.getElementsByClassName("headerlink")
+
+    // 页面所有目录列表
+    let catLinkList = document.getElementsByClassName("toc-link")
+
+    for(let i = 0; i < catLinkList.length; i++) {
+      let currentTopCat = headerLinkList[i].offsetTop - offsetHeight
+      let nextTopCat = i + 1 === headerLinkList.length ?
+          Infinity : headerLinkList[i+1].offsetTop - offsetHeight
+
+      if (scrollTop >= currentTopCat && scrollTop < nextTopCat) {
+        catLinkList[i].className = "toc-link active"
+      } else {
+        catLinkList[i].className = "toc-link"
+      }
+    }
+  }
+
+  handleScoll();
+  isActiveCat();
+  document.addEventListener("scroll", changePos, false);
+  document.addEventListener("scroll", isActiveCat, false);
+
 </script>
 
 
 
-
-
-
-
-
-
   
+    <div class="comments-container">
+      
+  <div id="disqus_thread"></div>
+  <script>
+
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://zcheng.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
+    </div>
   
+</div>
 
 
-
-
-
-
-
-
-
-
-
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/judgehaw">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="judgehaw@163.com">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="微信" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
   
+    <div class="footer-more">
+      <a href="https://github.com/judgehaw">Copyright © Oranges 2020</a>
+    </div>
   
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+</div>
 
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
+      </div>
 
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
 
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+<script>
 
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  function isHidden() {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    if (scrollTop > 0) {
+       document.querySelector(".back-to-top").className = "back-to-top";
+    } else {
+      document.querySelector(".back-to-top").className = "back-to-top hidden";
+    }
+  }
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
+  const backToTop = () => {
+    let scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop,
+      delay = 10,
+      time = 200;
+    let step = Math.ceil(scrollTop * delay / time);
+    let timer = setInterval(() => {
+      scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop - step <= 0) {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        clearInterval(timer);
+      } else {
+        document.documentElement.scrollTop = scrollTop - step;
+        document.body.scrollTop = scrollTop - step;
+      }
+    }, delay);
+  }
 
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+  document.addEventListener("scroll", isHidden, false);
+  document.querySelector(".back-to-top").addEventListener("click", backToTop, false);
+</script>
 
 
+    </div>
 
-  
+    <script async>
+  let fancyTimer = setInterval(function(){
+    if(!window.$){
+      return;
+    }
+    $(document).ready(function() {
+      $(".markdown-body img").each(function () {
+        if($(this).parent().get(0).tagName.toLowerCase() === "a") {
+          return;
+        }
+        // $(this).attr("data-fancybox", "gallery"); // if you add 'data-fancybox', img will display after showed
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "gallery");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      });
 
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-</body>
+      clearInterval(fancyTimer);
+    });
+  }, 10);
+</script>
+  </body>
 </html>
