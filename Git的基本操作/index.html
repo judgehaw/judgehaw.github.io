@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="oranges, 1451426471@qq.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>Git的基本操作 | JudgeHaw</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  
+    <link rel="alternate" href="[object Object]" title="JudgeHaw" type="application/atom+xml">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- css -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+
+  <!-- script -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/"><img src="/images/head.png" alt=""></a>
+    <div class="nickname"><a href="/">JudgeHaw</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">归档</a>
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          <a href="/categories/">分类</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">标签</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">关于我</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<script>
+  let navs = document.querySelectorAll('.nav-item');
+  let pagePath = window.location.pathname;
+  for(let nav of navs) {
+    let navPath = nav.getAttribute("data-path");
+    if(navPath && navPath === pagePath) {
+      nav.className = "nav-item active";
+    }
+  }
+</script>
+
+
+      <div class="flex-container">
+        <!-- ejs文件，建议切换编辑器plain text为html查看更佳 -->
+<!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+
+
+
+
+
+
+
+<!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+<div class="container post-details" id="post-details">
+  <div class="post-content">
+    <div class="post-title">Git的基本操作</div>
+    <div class="post-attach">
+      <span class="post-pubtime">2020-01-16</span>
+      <span class="post-tags">
+        
+          <i class="iconfont icon-tags"></i>
+          
+          <span class="span--tag">
+            <a href="/tags/git/">
+              #git
+            </a>
+          </span>
+          
+        
+      </span>
+    </div>
+    <div class="markdown-body">
+      <h3 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h3><h4 id="这里总结的基本是使用git-bash的命令行进行操作，第三方软件进行点击按钮的操作相对简单。"><a href="#这里总结的基本是使用git-bash的命令行进行操作，第三方软件进行点击按钮的操作相对简单。" class="headerlink" title="这里总结的基本是使用git bash的命令行进行操作，第三方软件进行点击按钮的操作相对简单。"></a>这里总结的基本是使用git bash的命令行进行操作，第三方软件进行点击按钮的操作相对简单。</h4><p>&ensp; &ensp; 我们在安装好git之后，先在本地新建一个工作目录，目录的位置可以自己来定，也可以在桌面右键，点击Git Bash Here，使用cd命令进入自己想要创建工作目录的路径，然后使用mkdir [目录名]在当前路径创建工作目录。</p>
+<p>&ensp; &ensp; 在我们创建好工作目录之后，在Git Bash中使用命令<code>git init</code>在当前目录生成本地git版本库，hooks：存放一些shell脚本，Info：exclude：存放仓库的一些信息，logs：保存所有更新的引用记录，objects：存放所有的git对象，config：git仓库的配置文件，description：仓库的描述信息，主要给gitweb等git托管系统使用，index：暂存区（stage）一个二进制文件，HEAD：映射到ref引用，能够找到下一次commit的前一次哈希值，ORIG_HEAD:HEAD指针的前一个状态..等等。</p>
+<p>&ensp; &ensp; 本地仓库分区三个区域：工作区、暂存区、仓库。<br>&ensp; &ensp; 这三个区域分别对应不同的状态，这个状态我们可以在Git Bash中使用命令<code>git status</code>来查看。</p>
+<blockquote>
+<p>工作区：工作区是我们在编辑代码文档等的区域，在这个区域我们可以使用<code>git status</code>查看到当前修改过或新增的文件都为红色字体，我们可以通过其显示的状态来确定当前文件有没有被修改“Untracked files”。</p>
+</blockquote>
+<blockquote>
+<p>暂存区：暂存区是我们可以将编辑好的文档等暂时保存的区域，将工作区的文档等提交暂存区的命令<code>git add /路径/文件名</code>，这时候我们使用<code>git status</code>可以看到绿色字体，里面是我们创建并提交到暂存区的文件。</p>
+</blockquote>
+<blockquote>
+<p>仓库：本地仓库是我们保存本地所有经过上传的文件，这些文件会默认保存在master分支，master分支是git生成版本库<code>git init</code>的时候默认自动创建的分支，我们将暂存区的文档等提交到本地仓库的命令是<code>git commit -m &quot;更新说明&quot;</code>，提交到仓库之后我们在使用<code>git status</code>就会提示我们<code>nothing to commit, working tree clean</code>，表明我们将所有新文件都提交到了本地仓库，这时候的暂存区是干净的。</p>
+</blockquote>
+<hr>
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><p>&ensp; &ensp; 我们可以使用<code>git branch -a</code>来查看当前的所有分支包括远端仓库分支，绿色前面带*的是我们当前分支。</p>
+<p>&ensp; &ensp; 分支的作用：几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。</p>
+<h4 id="如何连接GitHub仓库分支"><a href="#如何连接GitHub仓库分支" class="headerlink" title="如何连接GitHub仓库分支"></a>如何连接GitHub仓库分支</h4><p>&ensp; &ensp; 怎样将GitHub跟本机使用ssh建立连接可以看前面搭建博客第一篇的内容，里面有介绍。</p>
+<p>&ensp; &ensp; 在我们跟GitHub项目建立连接之后，使用<code>git remote -v</code>来查看远程项目地址，之后 我们使用<code>git pull</code>可以直接将GitHub项目仓库中的所有内容都拉取到本地并跟当前合并，这个命令跟<code>git fetch</code>结果相似，不过有所不同，不同之处<a href="https://www.cnblogs.com/runnerjack/p/9342362.html" target="_blank" rel="noopener">点击这里</a>。</p>
+<p>&ensp; &ensp; 当我们拉取结束之后，我们就可以使用<code>git branch -a</code>查看到我们本地和远端的所有分支了，红颜色的代表远端分支，<code>git branch -r</code>只查看远程分支。</p>
+<p>&ensp; &ensp; 切换分支<code>git checkout origin/分支名称</code>，切换分支之后我们命令行右上角会看到当前分支的名称，或者使用<code>git branch -a</code>来查看当前分支。</p>
+<hr>
+<h3 id="Git使用的基本流程"><a href="#Git使用的基本流程" class="headerlink" title="Git使用的基本流程"></a>Git使用的基本流程</h3><p>&ensp; &ensp; 首先我们是在我们本地的工作区来新增或修改文档代码等，然后通过<code>git add .</code>将我们已经处理好的文本添加在本地的缓存区，这个时候<code>git status</code>可以看到绿色的字体为我们修改过或新增的文本。<br>&ensp; &ensp; 在我们将所有修改文本全部加入缓存区之后，我们需要将其提交至本地的Git仓库，使用<code>git commit -m &quot;情况说明&quot;</code>这里的说明是非常重要的，它可以在我们回退之前提交的Git版本的时候查看到。<br>&ensp; &ensp; 在我们将文本提交到本地仓库之后，我们通常会需要将其上传至远端GitHub的项目中，这时候我们使用命令<code>git push origin master(master是我们需要上传的分支)</code>这里分支的概念就尤为重要了，<code>git push origin master:hexo</code>这里的“:”是将我们当前master分支的内容上传合并至hexo分支中。<br>这样我们在本地写的文本便会被我们存到GitHub中，就可以实现多终端的版本控制了。</p>
+<hr>
+<h3 id="多终端同步"><a href="#多终端同步" class="headerlink" title="多终端同步"></a>多终端同步</h3><p>&ensp; &ensp; 多终端同步在我们平时的版本控制中是常见的需求，首先我们需要在新的终端中安装好Git环境，这个环境需要的软件和安装百度也是有很多，大体都差不多。<br>&ensp; &ensp; 在我们搭建好环境后，我们需要在GitHub中配置好我们当前电脑的ssh密钥，不配置的话我们便会需要在上传的时候输入自己的用户名及密码，比较麻烦，绑定ssh密钥也比较简单，我们首先生成自己的本地密钥，然后在GitHub的Settings里有ssh项，我们创建新的ssh密钥，将我们刚才生成的公钥放进其Key中，点击添加就OK。<br>&ensp; &ensp; 绑定好ssh之后我们先检查我们本地是否连接上远端GitHub，使用命令<code>ssh git@github.com</code>回显出现<code>You&#39;ve successfully authenticated</code>就说明连接成功。<br>&ensp; &ensp; 这时候我们只需要将我们远端GitHub中的内容拉取到本地就可以了，使用<code>git pull</code>命令，需要我们等待一会，如果出错一定是我们之前有哪一步没有正确完成，我们根据报错信息来解决就好。<br>&ensp; &ensp; 拉取结束之后，就可以在本地的工作区展开工作了，当我们需要上传的时候可以查看我上面写到的步骤，如果我们将.git本地版本库删掉了，我们便需要重新拉取一下，将我们GitHub中的分支等信息得到，不然我们在<code>git init</code>之后我们本地只有一个master分支，我们在上传的时候是会报错的。</p>
+<hr>
+<h2 id="Git的常用命令"><a href="#Git的常用命令" class="headerlink" title="Git的常用命令"></a>Git的常用命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">创建版本库：git init</span><br><span class="line">添加文件到缓存区：git add 文件路径</span><br><span class="line">添加当前工作区全部文件到缓存区：git add .</span><br><span class="line">添加到仓库：git commit -m &quot;情况说明&quot;</span><br><span class="line">从暂存区回退上个版本：git checkout -- file</span><br><span class="line">删除：git rm file</span><br><span class="line">查看指定文件：git cat file</span><br><span class="line">比对工作区与版本库：git diff</span><br><span class="line">查看日志：git log</span><br><span class="line">操作历史：git reflog</span><br><span class="line">版本回退：git reset --hard commit-id/HEAD-id</span><br><span class="line">创建并指向分支：git checkout -b &lt;branch&gt;</span><br><span class="line">切换分支：git checkout &lt;branch&gt;</span><br><span class="line">本地建立远程库对应分支：git checkout -b branch origin/branch</span><br><span class="line">查看分支信息：git branch -a/v</span><br><span class="line">删除分支：git branch -d &lt;branch&gt;</span><br><span class="line">检测ssh连接：ssh -T git@github.com</span><br><span class="line">添加远程版本库：git remote add origin git@github.com:路径/版本库.git</span><br><span class="line">克隆远程分支库：git clone 远程仓库路径</span><br><span class="line">克隆指定分支：git clone -b 分支名 远程仓库路径</span><br><span class="line">从远程库拉取最新提交：git pull</span><br><span class="line">关联并推送本地版本库到远程库：git push -u origin master</span><br><span class="line">查看远程仓库状态：git remote show origin</span><br><span class="line">更新远程信息：git remote update</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>希望这篇文章对大家理解Git有所帮助，鞠躬！</strong></p>
+<hr>
+<p>参考链接：<br><a href="https://blog.csdn.net/tianbo_zhang/article/details/78981905" target="_blank" rel="noopener">Git常用命令总结及一些问题思考</a><br><a href="https://www.imooc.com/article/9707?block_id=tuijian_wz" target="_blank" rel="noopener">Hexo搭建博客并实现多终端同步管理</a><br><a href="https://www.bilibili.com/video/av10475153?p=7" target="_blank" rel="noopener">【教程】学会Git玩转Github【全】</a><br><a href="https://blog.csdn.net/weixin_41900719/article/details/97237256" target="_blank" rel="noopener">git的工作区域</a></p>
+    </div>
+  </div>
+  
+<div class="post-catalog" id="catalog">
+  <div class="title">目录</div>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git的基本框架"><span class="toc-text">git的基本框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#本地仓库"><span class="toc-text">本地仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#这里总结的基本是使用git-bash的命令行进行操作，第三方软件进行点击按钮的操作相对简单。"><span class="toc-text">这里总结的基本是使用git bash的命令行进行操作，第三方软件进行点击按钮的操作相对简单。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支"><span class="toc-text">分支</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如何连接GitHub仓库分支"><span class="toc-text">如何连接GitHub仓库分支</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git使用的基本流程"><span class="toc-text">Git使用的基本流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多终端同步"><span class="toc-text">多终端同步</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git的常用命令"><span class="toc-text">Git的常用命令</span></a></li></ol>
+</div>
+
+<script>
+  var catalog = null;
+  var catalogTopHeight = null;
+  function handleScoll() {
+    catalog = document.getElementById("catalog");
+    catalogTopHeight = catalog.offsetTop;
+  }
+
+  function changePos() {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    if (scrollTop > catalogTopHeight - 20) {
+      catalog.style = "position: fixed; top: 20px;"
+    } else {
+      catalog.style = "position: absolute; top: calc(290px + 88px + 30px)"
+    }
+  }
+
+  function isActiveCat() {
+    // 可宽限高度值
+    let offsetHeight = 20
+
+    // 当前页面滚动位置距页面顶部的高度值
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+
+    // 页面所有标题列表
+    let headerLinkList = document.getElementsByClassName("headerlink")
+
+    // 页面所有目录列表
+    let catLinkList = document.getElementsByClassName("toc-link")
+
+    for(let i = 0; i < catLinkList.length; i++) {
+      let currentTopCat = headerLinkList[i].offsetTop - offsetHeight
+      let nextTopCat = i + 1 === headerLinkList.length ?
+          Infinity : headerLinkList[i+1].offsetTop - offsetHeight
+
+      if (scrollTop >= currentTopCat && scrollTop < nextTopCat) {
+        catLinkList[i].className = "toc-link active"
+      } else {
+        catLinkList[i].className = "toc-link"
+      }
+    }
+  }
+
+  handleScoll();
+  isActiveCat();
+  document.addEventListener("scroll", changePos, false);
+  document.addEventListener("scroll", isActiveCat, false);
+
+</script>
+
+
+
+  
+    <div class="comments-container">
+      
+  <div id="disqus_thread"></div>
+  <script>
+
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://zcheng.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  
+</div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/judgehaw">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="judgehaw@163.com">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="微信" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a href="https://github.com/judgehaw">Copyright © Oranges 2020</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+<script>
+
+  function isHidden() {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    if (scrollTop > 0) {
+       document.querySelector(".back-to-top").className = "back-to-top";
+    } else {
+      document.querySelector(".back-to-top").className = "back-to-top hidden";
+    }
+  }
+
+  const backToTop = () => {
+    let scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop,
+      delay = 10,
+      time = 200;
+    let step = Math.ceil(scrollTop * delay / time);
+    let timer = setInterval(() => {
+      scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop - step <= 0) {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        clearInterval(timer);
+      } else {
+        document.documentElement.scrollTop = scrollTop - step;
+        document.body.scrollTop = scrollTop - step;
+      }
+    }, delay);
+  }
+
+  document.addEventListener("scroll", isHidden, false);
+  document.querySelector(".back-to-top").addEventListener("click", backToTop, false);
+</script>
+
+
+    </div>
+
+    <script async>
+  let fancyTimer = setInterval(function(){
+    if(!window.$){
+      return;
+    }
+    $(document).ready(function() {
+      $(".markdown-body img").each(function () {
+        if($(this).parent().get(0).tagName.toLowerCase() === "a") {
+          return;
+        }
+        // $(this).attr("data-fancybox", "gallery"); // if you add 'data-fancybox', img will display after showed
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "gallery");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      });
+
+      clearInterval(fancyTimer);
+    });
+  }, 10);
+</script>
+  </body>
+</html>

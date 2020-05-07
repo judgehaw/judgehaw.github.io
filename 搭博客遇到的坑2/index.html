@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="oranges, 1451426471@qq.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>搭博客遇到的坑2 | JudgeHaw</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  
+    <link rel="alternate" href="[object Object]" title="JudgeHaw" type="application/atom+xml">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- css -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+
+  <!-- script -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/"><img src="/images/head.png" alt=""></a>
+    <div class="nickname"><a href="/">JudgeHaw</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">归档</a>
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          <a href="/categories/">分类</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">标签</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">关于我</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<script>
+  let navs = document.querySelectorAll('.nav-item');
+  let pagePath = window.location.pathname;
+  for(let nav of navs) {
+    let navPath = nav.getAttribute("data-path");
+    if(navPath && navPath === pagePath) {
+      nav.className = "nav-item active";
+    }
+  }
+</script>
+
+
+      <div class="flex-container">
+        <!-- ejs文件，建议切换编辑器plain text为html查看更佳 -->
+<!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+
+
+
+
+
+
+
+<!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+<div class="container post-details" id="post-details">
+  <div class="post-content">
+    <div class="post-title">搭博客遇到的坑2</div>
+    <div class="post-attach">
+      <span class="post-pubtime">2018-10-14</span>
+      <span class="post-tags">
+        
+          <i class="iconfont icon-tags"></i>
+          
+          <span class="span--tag">
+            <a href="/tags/博客/">
+              #博客
+            </a>
+          </span>
+          
+        
+      </span>
+    </div>
+    <div class="markdown-body">
+      <ul>
+<li>网络</li>
+</ul>
+<ol>
+<li>检查自己网络是否通畅；</li>
+<li>GitHub能不能正确访问的到。</li>
+</ol>
+<ul>
+<li>Hexo的主配置文件<code>_config.yml</code></li>
+</ul>
+<ol>
+<li>配置文件中，url项的地址是否跟自己创建的github.io的地址一样；</li>
+<li><p>配置文件中，deploy项中repository子项的地址格式是否正确；</p>
+<blockquote>
+<p>正确格式：<a href="mailto:`git@github.com" target="_blank" rel="noopener">`git@github.com</a>:yourname/yourname.github.io.git`</p>
+</blockquote>
+</li>
+<li><p>配置文件中，deploy项中子项的格式是否正确；</p>
+<blockquote>
+<p>正确格式是deploy下面3个子项必须往里缩进2格。</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>GitHub里ssh密钥有没有配置，或配置是否正确。</li>
+</ul>
+<ol>
+<li>生成<code>.pub</code>结尾的文件内的所有字符都必须复制粘贴到GitHub的ssh选项内。</li>
+<li>配置GitHub账户信息是否正确<ul>
+<li><code>git config --global user.name &quot;yourname&quot;</code></li>
+<li><code>git config --global user.email &quot;youremail&quot;</code></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="执行命令hexo-server，提示：Usage-hexo-…-提示找不到该指令："><a href="#执行命令hexo-server，提示：Usage-hexo-…-提示找不到该指令：" class="headerlink" title="执行命令hexo server，提示：Usage: hexo …. 提示找不到该指令："></a>执行命令hexo server，提示：Usage: hexo …. 提示找不到该指令：</h3><ul>
+<li>解决方法: 在Hexo 3.0 后server被单独出来了，需要安装server，安装的命令如下：<code>npm install hexo-server –save</code> 安装此server后再试，问题解决。</li>
+</ul>
+<hr>
+<h3 id="localhost-4000端口被占用问题："><a href="#localhost-4000端口被占用问题：" class="headerlink" title="localhost:4000端口被占用问题："></a>localhost:4000端口被占用问题：</h3><ul>
+<li>解决方法：<code>hexo s -p 6666</code> 指定端口为6666.</li>
+</ul>
+<hr>
+<h3 id="常见报错"><a href="#常见报错" class="headerlink" title="常见报错"></a>常见报错</h3><ul>
+<li>YAMLException: incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line at line 1, column 33:<blockquote>
+<p>这样的情况一般是配置文件格式错误<code>line 1</code>一般直接显示错误的行。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="hexo更换主题后，本地运行测试命令行提示-WARN-No-layout-index-html-："><a href="#hexo更换主题后，本地运行测试命令行提示-WARN-No-layout-index-html-：" class="headerlink" title="hexo更换主题后，本地运行测试命令行提示 : WARN No layout: index.html?："></a>hexo更换主题后，本地运行测试命令行提示 : WARN No layout: index.html?：</h3><ul>
+<li><p>检查下载的主题是不是放在了themes文件夹下面，比如next主题的放置，就是点开themes就看到next的文件夹，next下面就是主题的文件。</p>
+</li>
+<li><p>检查站点配置_config.yml是不是下面的形式</p>
+<blockquote>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li>theme: 你的主题名字</li>
+<li>theme后面与主题名直接有一个空格。</li>
+<li>主题名字是否与themes文件夹下主题的名字一致。</li>
+</ol>
+<hr>
+<h2 id="搭建其实都不是很难，网上的教程也有很多，难得主要是主题的设置，很复杂！下期我来说一下关于主题配置的方法，鞠躬！"><a href="#搭建其实都不是很难，网上的教程也有很多，难得主要是主题的设置，很复杂！下期我来说一下关于主题配置的方法，鞠躬！" class="headerlink" title="搭建其实都不是很难，网上的教程也有很多，难得主要是主题的设置，很复杂！下期我来说一下关于主题配置的方法，鞠躬！"></a>搭建其实都不是很难，网上的教程也有很多，难得主要是主题的设置，很复杂！下期我来说一下关于主题配置的方法，鞠躬！</h2>
+    </div>
+  </div>
+  
+<div class="post-catalog" id="catalog">
+  <div class="title">目录</div>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#上一篇说到搭建还有主题；"><span class="toc-text">上一篇说到搭建还有主题；</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#这篇文章主要说一下自己在搭建过程中遇到的问题。"><span class="toc-text">这篇文章主要说一下自己在搭建过程中遇到的问题。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GitHub与Hexo无法建立连接的问题："><span class="toc-text">GitHub与Hexo无法建立连接的问题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行命令hexo-server，提示：Usage-hexo-…-提示找不到该指令："><span class="toc-text">执行命令hexo server，提示：Usage: hexo …. 提示找不到该指令：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#localhost-4000端口被占用问题："><span class="toc-text">localhost:4000端口被占用问题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见报错"><span class="toc-text">常见报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo更换主题后，本地运行测试命令行提示-WARN-No-layout-index-html-："><span class="toc-text">hexo更换主题后，本地运行测试命令行提示 : WARN No layout: index.html?：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建其实都不是很难，网上的教程也有很多，难得主要是主题的设置，很复杂！下期我来说一下关于主题配置的方法，鞠躬！"><span class="toc-text">搭建其实都不是很难，网上的教程也有很多，难得主要是主题的设置，很复杂！下期我来说一下关于主题配置的方法，鞠躬！</span></a></li></ol>
+</div>
+
+<script>
+  var catalog = null;
+  var catalogTopHeight = null;
+  function handleScoll() {
+    catalog = document.getElementById("catalog");
+    catalogTopHeight = catalog.offsetTop;
+  }
+
+  function changePos() {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    if (scrollTop > catalogTopHeight - 20) {
+      catalog.style = "position: fixed; top: 20px;"
+    } else {
+      catalog.style = "position: absolute; top: calc(290px + 88px + 30px)"
+    }
+  }
+
+  function isActiveCat() {
+    // 可宽限高度值
+    let offsetHeight = 20
+
+    // 当前页面滚动位置距页面顶部的高度值
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+
+    // 页面所有标题列表
+    let headerLinkList = document.getElementsByClassName("headerlink")
+
+    // 页面所有目录列表
+    let catLinkList = document.getElementsByClassName("toc-link")
+
+    for(let i = 0; i < catLinkList.length; i++) {
+      let currentTopCat = headerLinkList[i].offsetTop - offsetHeight
+      let nextTopCat = i + 1 === headerLinkList.length ?
+          Infinity : headerLinkList[i+1].offsetTop - offsetHeight
+
+      if (scrollTop >= currentTopCat && scrollTop < nextTopCat) {
+        catLinkList[i].className = "toc-link active"
+      } else {
+        catLinkList[i].className = "toc-link"
+      }
+    }
+  }
+
+  handleScoll();
+  isActiveCat();
+  document.addEventListener("scroll", changePos, false);
+  document.addEventListener("scroll", isActiveCat, false);
+
+</script>
+
+
+
+  
+    <div class="comments-container">
+      
+  <div id="disqus_thread"></div>
+  <script>
+
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://zcheng.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  
+</div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/judgehaw">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="judgehaw@163.com">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="微信" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a href="https://github.com/judgehaw">Copyright © Oranges 2020</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+<script>
+
+  function isHidden() {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    if (scrollTop > 0) {
+       document.querySelector(".back-to-top").className = "back-to-top";
+    } else {
+      document.querySelector(".back-to-top").className = "back-to-top hidden";
+    }
+  }
+
+  const backToTop = () => {
+    let scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop,
+      delay = 10,
+      time = 200;
+    let step = Math.ceil(scrollTop * delay / time);
+    let timer = setInterval(() => {
+      scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop - step <= 0) {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        clearInterval(timer);
+      } else {
+        document.documentElement.scrollTop = scrollTop - step;
+        document.body.scrollTop = scrollTop - step;
+      }
+    }, delay);
+  }
+
+  document.addEventListener("scroll", isHidden, false);
+  document.querySelector(".back-to-top").addEventListener("click", backToTop, false);
+</script>
+
+
+    </div>
+
+    <script async>
+  let fancyTimer = setInterval(function(){
+    if(!window.$){
+      return;
+    }
+    $(document).ready(function() {
+      $(".markdown-body img").each(function () {
+        if($(this).parent().get(0).tagName.toLowerCase() === "a") {
+          return;
+        }
+        // $(this).attr("data-fancybox", "gallery"); // if you add 'data-fancybox', img will display after showed
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "gallery");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      });
+
+      clearInterval(fancyTimer);
+    });
+  }, 10);
+</script>
+  </body>
+</html>

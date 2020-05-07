@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="oranges, 1451426471@qq.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>搭博客遇到的坑1 | JudgeHaw</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  
+    <link rel="alternate" href="[object Object]" title="JudgeHaw" type="application/atom+xml">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- css -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+
+  <!-- script -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/"><img src="/images/head.png" alt=""></a>
+    <div class="nickname"><a href="/">JudgeHaw</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">归档</a>
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          <a href="/categories/">分类</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">标签</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">关于我</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<script>
+  let navs = document.querySelectorAll('.nav-item');
+  let pagePath = window.location.pathname;
+  for(let nav of navs) {
+    let navPath = nav.getAttribute("data-path");
+    if(navPath && navPath === pagePath) {
+      nav.className = "nav-item active";
+    }
+  }
+</script>
+
+
+      <div class="flex-container">
+        <!-- ejs文件，建议切换编辑器plain text为html查看更佳 -->
+<!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+
+
+
+
+
+
+
+<!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+<div class="container post-details" id="post-details">
+  <div class="post-content">
+    <div class="post-title">搭博客遇到的坑1</div>
+    <div class="post-attach">
+      <span class="post-pubtime">2018-10-13</span>
+      <span class="post-tags">
+        
+          <i class="iconfont icon-tags"></i>
+          
+          <span class="span--tag">
+            <a href="/tags/博客/">
+              #博客
+            </a>
+          </span>
+          
+        
+      </span>
+    </div>
+    <div class="markdown-body">
+      <h3 id="nodeJS-：-https-nodejs-org-en"><a href="#nodeJS-：-https-nodejs-org-en" class="headerlink" title="[nodeJS]： https://nodejs.org/en/"></a>[nodeJS]： <a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a></h3><h3 id="Git-bash-：https-git-for-windows-github-io"><a href="#Git-bash-：https-git-for-windows-github-io" class="headerlink" title="[Git bash]：https://git-for-windows.github.io/"></a>[Git bash]：<a href="https://git-for-windows.github.io/" target="_blank" rel="noopener">https://git-for-windows.github.io/</a></h3><h2 id="检查环境"><a href="#检查环境" class="headerlink" title="检查环境"></a>检查环境</h2><p>鼠标右击打开Git bash，输入</p>
+<ul>
+<li><code>node -v</code> （查看node版本，确保node安装成功）</li>
+<li><code>git version</code> （查看git）<br>（基本都是傻瓜式的安装）</li>
+</ul>
+<blockquote>
+<p>安装好上面两种之后，接下来进行最繁琐的一件事</p>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>安装hexo</strong></li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="鼠标桌面右击打开Git-bash"><a href="#鼠标桌面右击打开Git-bash" class="headerlink" title="鼠标桌面右击打开Git bash"></a>鼠标桌面右击打开Git bash</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><blockquote>
+<p>cd 进入自己想要安装hexo的路径，创建一个文件夹名为blog，并cd进入</p>
+</blockquote>
+<p>  Git bash内输入安装</p>
+<ul>
+<li><code>npm install -g hexo</code> (install 可以简写成‘i’)</li>
+</ul>
+<p>等待一会</p>
+<ul>
+<li><code>hexo -v</code> （查看hexo是否安装成功）</li>
+</ul>
+<hr>
+<h3 id="初始化hexo"><a href="#初始化hexo" class="headerlink" title="初始化hexo"></a>初始化hexo</h3><ul>
+<li>输入<code>hexo init</code><br>完成后会发现自己的安装路径下会多几个文件夹</li>
+<li>node_modules：是依赖包</li>
+<li>public：存放的是生成的页面</li>
+<li>scaffolds：命令生成文章等的模板</li>
+<li>source：用命令创建的各种文章</li>
+<li>themes：主题</li>
+<li>_config.yml：整个博客的配置</li>
+<li>db.json：source解析所得到的</li>
+<li>package.json：项目所需模块项目的配置信息</li>
+</ul>
+<hr>
+<h3 id="搭桥到GitHub"><a href="#搭桥到GitHub" class="headerlink" title="搭桥到GitHub"></a>搭桥到GitHub</h3><blockquote>
+<p>先创建一个账号<br>  创建好后，点开右上角创建一个库，设置库名为<code>yourname.github.io</code>，并保存.</p>
+</blockquote>
+<blockquote>
+<p> 回到gitbash中，配置github账户信息,”yourname”和”youremail”替换为你自己的用户名和邮箱名</p>
+</blockquote>
+<ul>
+<li>git config –global user.name “yourname”</li>
+<li>git config –global user.email “youremail”</li>
+</ul>
+<hr>
+<h3 id="配置GitHub密钥"><a href="#配置GitHub密钥" class="headerlink" title="配置GitHub密钥"></a>配置GitHub密钥</h3><blockquote>
+<ul>
+<li><code>ssh-keygen</code> 连续按几次回车后，进入 <code>cd /root/.ssh/</code>目录，会看到有一个以<code>.pub</code>结尾的文件，查看<code>cat id_rsa.pub</code></li>
+<li>全部复制其中的内容，放在GitHub中</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>可以删除掉原来的keys，创建一个新的key，title里面随便写一个key名，key里粘贴刚才复制的内容。</p>
+</blockquote>
+<ul>
+<li>验证key：<code>ssh -T git@github.com</code><blockquote>
+<p>没有报错就说明成功了</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="配置hexo，使其跟自己的GitHub连接。"><a href="#配置hexo，使其跟自己的GitHub连接。" class="headerlink" title="配置hexo，使其跟自己的GitHub连接。"></a>配置hexo，使其跟自己的GitHub连接。</h3><p>  <strong>打开安装目录下的_config.yml文件，在最后面添加</strong></p>
+<blockquote>
+<p>deploy:<br> &#160;&#160;&#160;type: git<br> &#160;&#160;&#160;repository: &#160;&#160;&#160;<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:judgehaw/judgehaw.github.io.git<br> &#160;&#160;&#160;branch: master</p>
+</blockquote>
+<p><strong>在文件中查找url，将后面的url改为<code>http://yourname/yourname.github.io</code>,配置文件中写的内容“：”后面一定要有空格，上面deploy下面的3行也要有空格。</strong></p>
+<p>回到Git bash，先安装一个插件，使得自己的博客能被别人看到<br> &#160;&#160;&#160;<code>npm install hexo-deployer-git --save</code></p>
+<blockquote>
+<p>然后执行命令<br><code>hexo clean</code> (清空hexo缓存)<br><code>hexo s -g</code> （生成静态文件并能在本地浏览）</p>
+</blockquote>
+<hr>
+<h3 id="本地访问"><a href="#本地访问" class="headerlink" title="本地访问"></a>本地访问</h3><blockquote>
+<p>本地浏览器url输入<code>localhost:4000</code></p>
+</blockquote>
+<p>页面应该可以看得到了，是hexo的默认页面</p>
+<hr>
+<h3 id="绑定个人域名"><a href="#绑定个人域名" class="headerlink" title="绑定个人域名"></a>绑定个人域名</h3><blockquote>
+<p>如果没有自己的域名的话。可以去阿里云或者腾讯云买一个，一年一般50RMB左右，并且要实名认证，还要配置DNS服务器哦。<br>在自己的域名管理界面选择解析，添加记录，主机记录选@或www，记录类型选择CNAME，记录值写<code>yourname.github.io</code>，然后点保存。</p>
+</blockquote>
+<blockquote>
+<p>Git bash中键入<code>hexo d -g</code> (上传GitHub)<br>这时候用自己的域名访问就会看到博客页面了</p>
+</blockquote>
+<hr>
+<h3 id="hexo主题"><a href="#hexo主题" class="headerlink" title="hexo主题"></a>hexo主题</h3><h2 id="主题是有很多的，可以在hexo网站上面查看并下载"><a href="#主题是有很多的，可以在hexo网站上面查看并下载" class="headerlink" title="主题是有很多的，可以在hexo网站上面查看并下载"></a>主题是有很多的，可以在hexo网站上面查看并下载</h2><p><a href="https://hexo.io/themes/" target="_blank" rel="noopener">Hexo主题</a><br><a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">Next主题使用文档</a><br><a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">Hexo配置</a></p>
+    </div>
+  </div>
+  
+<div class="post-catalog" id="catalog">
+  <div class="title">目录</div>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境准备"><span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需要的链接"><span class="toc-text">需要的链接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nodeJS-：-https-nodejs-org-en"><span class="toc-text">[nodeJS]： https://nodejs.org/en/</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-bash-：https-git-for-windows-github-io"><span class="toc-text">[Git bash]：https://git-for-windows.github.io/</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检查环境"><span class="toc-text">检查环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#鼠标桌面右击打开Git-bash"><span class="toc-text">鼠标桌面右击打开Git bash</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化hexo"><span class="toc-text">初始化hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搭桥到GitHub"><span class="toc-text">搭桥到GitHub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置GitHub密钥"><span class="toc-text">配置GitHub密钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置hexo，使其跟自己的GitHub连接。"><span class="toc-text">配置hexo，使其跟自己的GitHub连接。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地访问"><span class="toc-text">本地访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绑定个人域名"><span class="toc-text">绑定个人域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo主题"><span class="toc-text">hexo主题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主题是有很多的，可以在hexo网站上面查看并下载"><span class="toc-text">主题是有很多的，可以在hexo网站上面查看并下载</span></a></li></ol>
+</div>
+
+<script>
+  var catalog = null;
+  var catalogTopHeight = null;
+  function handleScoll() {
+    catalog = document.getElementById("catalog");
+    catalogTopHeight = catalog.offsetTop;
+  }
+
+  function changePos() {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    if (scrollTop > catalogTopHeight - 20) {
+      catalog.style = "position: fixed; top: 20px;"
+    } else {
+      catalog.style = "position: absolute; top: calc(290px + 88px + 30px)"
+    }
+  }
+
+  function isActiveCat() {
+    // 可宽限高度值
+    let offsetHeight = 20
+
+    // 当前页面滚动位置距页面顶部的高度值
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+
+    // 页面所有标题列表
+    let headerLinkList = document.getElementsByClassName("headerlink")
+
+    // 页面所有目录列表
+    let catLinkList = document.getElementsByClassName("toc-link")
+
+    for(let i = 0; i < catLinkList.length; i++) {
+      let currentTopCat = headerLinkList[i].offsetTop - offsetHeight
+      let nextTopCat = i + 1 === headerLinkList.length ?
+          Infinity : headerLinkList[i+1].offsetTop - offsetHeight
+
+      if (scrollTop >= currentTopCat && scrollTop < nextTopCat) {
+        catLinkList[i].className = "toc-link active"
+      } else {
+        catLinkList[i].className = "toc-link"
+      }
+    }
+  }
+
+  handleScoll();
+  isActiveCat();
+  document.addEventListener("scroll", changePos, false);
+  document.addEventListener("scroll", isActiveCat, false);
+
+</script>
+
+
+
+  
+    <div class="comments-container">
+      
+  <div id="disqus_thread"></div>
+  <script>
+
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://zcheng.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  
+</div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/judgehaw">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="judgehaw@163.com">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="微信" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a href="https://github.com/judgehaw">Copyright © Oranges 2020</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+<script>
+
+  function isHidden() {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    if (scrollTop > 0) {
+       document.querySelector(".back-to-top").className = "back-to-top";
+    } else {
+      document.querySelector(".back-to-top").className = "back-to-top hidden";
+    }
+  }
+
+  const backToTop = () => {
+    let scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop,
+      delay = 10,
+      time = 200;
+    let step = Math.ceil(scrollTop * delay / time);
+    let timer = setInterval(() => {
+      scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop - step <= 0) {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        clearInterval(timer);
+      } else {
+        document.documentElement.scrollTop = scrollTop - step;
+        document.body.scrollTop = scrollTop - step;
+      }
+    }, delay);
+  }
+
+  document.addEventListener("scroll", isHidden, false);
+  document.querySelector(".back-to-top").addEventListener("click", backToTop, false);
+</script>
+
+
+    </div>
+
+    <script async>
+  let fancyTimer = setInterval(function(){
+    if(!window.$){
+      return;
+    }
+    $(document).ready(function() {
+      $(".markdown-body img").each(function () {
+        if($(this).parent().get(0).tagName.toLowerCase() === "a") {
+          return;
+        }
+        // $(this).attr("data-fancybox", "gallery"); // if you add 'data-fancybox', img will display after showed
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "gallery");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      });
+
+      clearInterval(fancyTimer);
+    });
+  }, 10);
+</script>
+  </body>
+</html>
