@@ -94,7 +94,7 @@ theme: oranges
 deploy:
   type: git
   repo:
-    coding: e.coding.net/judgehaw/judgehaw.git
-    github: github.com/judgehaw/judgehaw.github.io.git
+    coding: https://e.coding.net/judgehaw/judgehaw.git
+    # github: github.com/judgehaw/judgehaw.github.io.git
 #  repository: git@github.com:judgehaw/judgehaw.github.io.git
   branch: master
