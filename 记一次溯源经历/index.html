@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   
-  <title>标签: 安全 | JudgeHaw</title>
+  <title>记一次溯源经历 | JudgeHaw</title>
 
   
     <link rel="apple-touch-icon" href="/images/favicon.ico">
@@ -84,53 +84,48 @@
 
 
       <div class="flex-container">
-        <!-- ejs文件，建议切换编辑器plain text 为 html查看更佳 -->
-<!-- 标签详情页，展示某个标签下的文章列表，url形式：https://yoursite/tags/某个标签/ -->
+        <!-- ejs文件，建议切换编辑器plain text为html查看更佳 -->
+<!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<div class="container tag-details">
-  <div class="content-title">
-    <h2>
-      <span>安全</span>
-    </h2>
+
+
+
+
+
+
+
+
+
+<!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+<div class="container post-details" id="post-details">
+  <div class="post-content">
+    <div class="post-title">记一次溯源经历</div>
+    <div class="post-attach">
+      <span class="post-pubtime">2020-09-03</span>
+      <span class="post-tags">
+        
+          <i class="iconfont icon-tags"></i>
+          
+          <span class="span--tag">
+            <a href="/tags/安全/">
+              #安全
+            </a>
+          </span>
+          
+        
+      </span>
+    </div>
+    <div class="markdown-body">
+      <p>上班的时候客户发来一张截图，说自己服务器被攻击了，我一看，nmap扫描被拦了，显示的源地址是自己内网地址，目的地址是服务器地址。</p>
+
+    </div>
   </div>
   
-    <div class="post-list">
-      <div class="post-item" title="记一次溯源经历">
-        <span class="time-m-d">2020-09-03</span>
-        <a href="/记一次溯源经历/">
-          <span>记一次溯源经历</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="Linux后门常用方法">
-        <span class="time-m-d">2020-03-12</span>
-        <a href="/Linux后门常用方法/">
-          <span>Linux后门常用方法</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="Linux系统账户安全">
-        <span class="time-m-d">2020-01-19</span>
-        <a href="/Linux系统账户安全/">
-          <span>Linux系统账户安全</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="Linux挖矿木马源码解析&处理">
-        <span class="time-m-d">2020-01-15</span>
-        <a href="/Linux挖矿木马源码解析-处理/">
-          <span>Linux挖矿木马源码解析&处理</span>
-        </a>
-      </div>
-    </div>
+
   
 </div>
+
 
         <div class="footer">
   <div class="social">
