@@ -95,6 +95,6 @@ deploy:
   type: git
   repo:
     coding: https://e.coding.net/judgehaw/judgehaw.git
-    #github: https://github.com/judgehaw/judgehaw.github.io.git
+    github: https://github.com/judgehaw/judgehaw.github.io.git
 #  repository: git@github.com:judgehaw/judgehaw.github.io.git
   branch: master
