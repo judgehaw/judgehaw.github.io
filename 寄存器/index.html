@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="oranges, 1451426471@qq.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>汇编之寄存器篇 | JudgeHaw</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  
+    <link rel="alternate" href="[object Object]" title="JudgeHaw" type="application/atom+xml">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- css -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+
+  <!-- script -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/"><img src="/images/head2.png" alt=""></a>
+    <div class="nickname"><a href="/">JudgeHaw 沈宴</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">归档</a>
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          <a href="/categories/">分类</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">标签</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">关于我</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<script>
+  let navs = document.querySelectorAll('.nav-item');
+  let pagePath = window.location.pathname;
+  for(let nav of navs) {
+    let navPath = nav.getAttribute("data-path");
+    if(navPath && navPath === pagePath) {
+      nav.className = "nav-item active";
+    }
+  }
+</script>
+
+
+      <div class="flex-container">
+        <!-- ejs文件，建议切换编辑器plain text为html查看更佳 -->
+<!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+
+
+
+
+
+
+
+<!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+<div class="container post-details" id="post-details">
+  <div class="post-content">
+    <div class="post-title">汇编之寄存器篇</div>
+    <div class="post-attach">
+      <span class="post-pubtime">2020-12-31</span>
+      <span class="post-tags">
+        
+          <i class="iconfont icon-tags"></i>
+          
+          <span class="span--tag">
+            <a href="/tags/汇编/">
+              #汇编
+            </a>
+          </span>
+          
+        
+      </span>
+    </div>
+    <div class="markdown-body">
+      <h1 id="通用寄存器："><a href="#通用寄存器：" class="headerlink" title="通用寄存器："></a>通用寄存器：</h1><p>​    AX,BX,CX,DX</p>
+<p>​    寄存器分为高位寄存器和低位寄存器：</p>
+<p>​    例：AX = AH + AL</p>
+<p>​    AH寄存器为高位寄存器，AL为低位寄存器</p>
+<p>BX寄存器可做偏移地址寄存器使用</p>
+<h1 id="地址寄存器："><a href="#地址寄存器：" class="headerlink" title="地址寄存器："></a>地址寄存器：</h1><p>​    1.段地址寄存器：</p>
+<p>​        DS,ES,SS,CS</p>
+<p>​    2.偏移地址寄存器：</p>
+<p>​        SI,DI,SP,IP,BP</p>
+<p>​    基础地址 + 偏移地址 = 物理地址</p>
+<p>​    基础地址 = 段地址 * 16(10H)</p>
+<p>只要基础地址+偏移地址=同一个物理地址，那么他们表示的位置是相同的。</p>
+<h1 id="寄存器组合所表示的意义："><a href="#寄存器组合所表示的意义：" class="headerlink" title="寄存器组合所表示的意义："></a>寄存器组合所表示的意义：</h1><p>​    CS:IP：决定了CPU从哪里读取指令</p>
+<p>​    SS:SP：决定了栈空间的大小及栈顶标记的位置</p>
+<p>​    DS:SI：通常做为数据从哪里来</p>
+<p>​    ES:DI：通常做为数据到哪里去</p>
+<h1 id="标志位寄存器："><a href="#标志位寄存器：" class="headerlink" title="标志位寄存器："></a>标志位寄存器：</h1><p>​    所有标志位寄存器都只与运算指令有关，与其他指令无关。</p>
+<table>
+<thead>
+<tr>
+<th>标志</th>
+<th>真（值为1）</th>
+<th>假（值为0）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OF</td>
+<td>OV</td>
+<td>NV</td>
+</tr>
+<tr>
+<td>SF</td>
+<td>NG</td>
+<td>PL</td>
+</tr>
+<tr>
+<td>ZF</td>
+<td>ZR</td>
+<td>NZ</td>
+</tr>
+<tr>
+<td>PF</td>
+<td>PE</td>
+<td>PO</td>
+</tr>
+<tr>
+<td>CF</td>
+<td>CY</td>
+<td>NC</td>
+</tr>
+<tr>
+<td>DF</td>
+<td>DN</td>
+<td>UP</td>
+</tr>
+</tbody>
+</table>
+<h2 id="CF标志位：（carry-flag-进位）"><a href="#CF标志位：（carry-flag-进位）" class="headerlink" title="CF标志位：（carry flag 进位）"></a>CF标志位：（carry flag 进位）</h2><p>​        CY ==&gt; carry yes 进位成功        NC ==&gt;not carry 进位失败</p>
+<p>​    当寄存器进行运算时，8位寄存器或16位寄存器不能够保存运算后的结果，则CF标志位由NC状态变为CY状态，表示为进位成功。</p>
+<p>​    </p>
+<h2 id="ZF标志位：（zero-flag-是否为零）"><a href="#ZF标志位：（zero-flag-是否为零）" class="headerlink" title="ZF标志位：（zero flag 是否为零）"></a>ZF标志位：（zero flag 是否为零）</h2><p>​        ZR ==&gt; zero 结果为零    NZ ==&gt; not zero 结果不为零</p>
+<p>​    可以用来检测两个寄存器中的值是否相等。</p>
+<h2 id="PF标志位：（parity-flag-奇偶性）"><a href="#PF标志位：（parity-flag-奇偶性）" class="headerlink" title="PF标志位：（parity flag 奇偶性）"></a>PF标志位：（parity flag 奇偶性）</h2><p>​        PE ==&gt; parity even 偶数    PO ==&gt; parity odd 奇数</p>
+<p>​    奇偶性是根据二进制中1的个数来决定，如：0000 0011B 二进制为两个1则是偶数，0000 0100B 二进制为一个1则是奇数。</p>
+<h2 id="SF标志位：（sign-flag-正负性）"><a href="#SF标志位：（sign-flag-正负性）" class="headerlink" title="SF标志位：（sign flag 正负性）"></a>SF标志位：（sign flag 正负性）</h2><p>​        NG ==&gt; negative 负数    PL ==&gt; positive 正数</p>
+<p>​    把计算结果看作是正数还是负数，mul不影响SF标志位。</p>
+<p>​    字节型数据范围：-128~127，80H~7FH</p>
+<p>​    字型数据范围：-32768~32767，8000H~7FFFH</p>
+<h2 id="OF标志位：（overflow-溢出）"><a href="#OF标志位：（overflow-溢出）" class="headerlink" title="OF标志位：（overflow 溢出）"></a>OF标志位：（overflow 溢出）</h2><p>​        OV ==&gt; overflow 溢出    NV ==&gt; not overflow 没有溢出</p>
+<p>​    表示运算指令的运算结果是否溢出。这里的溢出指的不是CF标志位的超出寄存器所能保存的最大值，而是运算结果有没有超出字节型和字型数据的数据范围。超出最大值会最小值则会表现为溢出状态。</p>
+<p>​    与CF标志位的区别就是CF标志位是无符号运算，它不会因为数值的正负去改变，只会因为超过寄存器所能保存的最大值去改变。</p>
+
+    </div>
+  </div>
+  
+<div class="post-catalog" id="catalog">
+  <div class="title">目录</div>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#通用寄存器："><span class="toc-text">通用寄存器：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#地址寄存器："><span class="toc-text">地址寄存器：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#寄存器组合所表示的意义："><span class="toc-text">寄存器组合所表示的意义：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#标志位寄存器："><span class="toc-text">标志位寄存器：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CF标志位：（carry-flag-进位）"><span class="toc-text">CF标志位：（carry flag 进位）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ZF标志位：（zero-flag-是否为零）"><span class="toc-text">ZF标志位：（zero flag 是否为零）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PF标志位：（parity-flag-奇偶性）"><span class="toc-text">PF标志位：（parity flag 奇偶性）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SF标志位：（sign-flag-正负性）"><span class="toc-text">SF标志位：（sign flag 正负性）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OF标志位：（overflow-溢出）"><span class="toc-text">OF标志位：（overflow 溢出）</span></a></li></ol></li></ol>
+</div>
+
+<script>
+  var catalog = null;
+  var catalogTopHeight = null;
+  function handleScoll() {
+    catalog = document.getElementById("catalog");
+    catalogTopHeight = catalog.offsetTop;
+  }
+
+  function changePos() {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    if (scrollTop > catalogTopHeight - 20) {
+      catalog.style = "position: fixed; top: 20px;"
+    } else {
+      catalog.style = "position: absolute; top: calc(290px + 88px + 30px)"
+    }
+  }
+
+  function isActiveCat() {
+    // 可宽限高度值
+    let offsetHeight = 20
+
+    // 当前页面滚动位置距页面顶部的高度值
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+
+    // 页面所有标题列表
+    let headerLinkList = document.getElementsByClassName("headerlink")
+
+    // 页面所有目录列表
+    let catLinkList = document.getElementsByClassName("toc-link")
+
+    for(let i = 0; i < catLinkList.length; i++) {
+      let currentTopCat = headerLinkList[i].offsetTop - offsetHeight
+      let nextTopCat = i + 1 === headerLinkList.length ?
+          Infinity : headerLinkList[i+1].offsetTop - offsetHeight
+
+      if (scrollTop >= currentTopCat && scrollTop < nextTopCat) {
+        catLinkList[i].className = "toc-link active"
+      } else {
+        catLinkList[i].className = "toc-link"
+      }
+    }
+  }
+
+  handleScoll();
+  isActiveCat();
+  document.addEventListener("scroll", changePos, false);
+  document.addEventListener("scroll", isActiveCat, false);
+
+</script>
+
+
+
+  
+</div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/judgehaw">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="judgehaw@163.com">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a href="https://github.com/judgehaw">Copyright © JudgeHaw 2020</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+<script>
+
+  function isHidden() {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    if (scrollTop > 0) {
+       document.querySelector(".back-to-top").className = "back-to-top";
+    } else {
+      document.querySelector(".back-to-top").className = "back-to-top hidden";
+    }
+  }
+
+  const backToTop = () => {
+    let scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop,
+      delay = 10,
+      time = 200;
+    let step = Math.ceil(scrollTop * delay / time);
+    let timer = setInterval(() => {
+      scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop - step <= 0) {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        clearInterval(timer);
+      } else {
+        document.documentElement.scrollTop = scrollTop - step;
+        document.body.scrollTop = scrollTop - step;
+      }
+    }, delay);
+  }
+
+  document.addEventListener("scroll", isHidden, false);
+  document.querySelector(".back-to-top").addEventListener("click", backToTop, false);
+</script>
+
+
+    </div>
+
+    <script async>
+  let fancyTimer = setInterval(function(){
+    if(!window.$){
+      return;
+    }
+    $(document).ready(function() {
+      $(".markdown-body img").each(function () {
+        if($(this).parent().get(0).tagName.toLowerCase() === "a") {
+          return;
+        }
+        // $(this).attr("data-fancybox", "gallery"); // if you add 'data-fancybox', img will display after showed
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "gallery");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      });
+
+      clearInterval(fancyTimer);
+    });
+  }, 10);
+</script>
+  </body>
+</html>
