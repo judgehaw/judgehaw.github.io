@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="oranges, 1451426471@qq.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>汇编语言指令 | JudgeHaw</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  
+    <link rel="alternate" href="[object Object]" title="JudgeHaw" type="application/atom+xml">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- css -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+
+  <!-- script -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/"><img src="/images/head2.png" alt=""></a>
+    <div class="nickname"><a href="/">JudgeHaw 沈宴</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">归档</a>
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          <a href="/categories/">分类</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">标签</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">关于我</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<script>
+  let navs = document.querySelectorAll('.nav-item');
+  let pagePath = window.location.pathname;
+  for(let nav of navs) {
+    let navPath = nav.getAttribute("data-path");
+    if(navPath && navPath === pagePath) {
+      nav.className = "nav-item active";
+    }
+  }
+</script>
+
+
+      <div class="flex-container">
+        <!-- ejs文件，建议切换编辑器plain text为html查看更佳 -->
+<!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+
+
+
+
+
+
+
+<!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+<div class="container post-details" id="post-details">
+  <div class="post-content">
+    <div class="post-title">汇编语言指令</div>
+    <div class="post-attach">
+      <span class="post-pubtime">2020-12-31</span>
+      <span class="post-tags">
+        
+          <i class="iconfont icon-tags"></i>
+          
+          <span class="span--tag">
+            <a href="/tags/安全/">
+              #安全
+            </a>
+          </span>
+          
+        
+      </span>
+    </div>
+    <div class="markdown-body">
+      <h3 id="mov指令：经常做为为寄存器或内存中赋值的指令"><a href="#mov指令：经常做为为寄存器或内存中赋值的指令" class="headerlink" title="mov指令：经常做为为寄存器或内存中赋值的指令"></a>mov指令：经常做为为寄存器或内存中赋值的指令</h3><p>​    例：mov ax,1000H    表示将AX寄存器中的内容修改为1000H</p>
+<h3 id="add指令：加法指令"><a href="#add指令：加法指令" class="headerlink" title="add指令：加法指令"></a>add指令：加法指令</h3><p>​    例：mov ax,30H    表示将AX寄存器中的内容加上30H后赋值给AX寄存器</p>
+<h3 id="sub指令：减法指令"><a href="#sub指令：减法指令" class="headerlink" title="sub指令：减法指令"></a>sub指令：减法指令</h3><h3 id="div指令：除法指令"><a href="#div指令：除法指令" class="headerlink" title="div指令：除法指令"></a>div指令：除法指令</h3><p>​    除数：有8位和16位两种，在一个寄存器或内存单元中</p>
+<p>​    被除数：默认放在AX或AX和DX中</p>
+<p>​        如果除数为8位，被除数为16位，则默认存放在AX中</p>
+<p>​        如果除数为16位，被除数为32位，则DX存放高16位，AX存放低16位</p>
+<p>​    结果：</p>
+<p>​        如果除数为8位，则AL存放除法的操作的商，AH存放除法操作的余数</p>
+<p>​        如果除数为16位，则AX存放出发操作的商，DX存放除法操作的余数</p>
+<h3 id="mul指令：乘法指令"><a href="#mul指令：乘法指令" class="headerlink" title="mul指令：乘法指令"></a>mul指令：乘法指令</h3><p>​    分为8位乘法和16位乘法</p>
+<p>​    如果是8位，一个数字存放在AL中，另一个数字存放在其他8位寄存器或字型内存单元中.</p>
+<p>​    如果是16位，一个数字默认存放在AX中，另外一个数字存放在其他16位寄存器或字型内存单元中。</p>
+<p>​    结果：如果是8位乘法，得到一个16位数值，结果存放在AX中，如果是16位乘法，得到一个32位数值，结果存放在AX和DX中，DX存放高16位，AX存放低16位。</p>
+<h3 id="push指令：入栈指令"><a href="#push指令：入栈指令" class="headerlink" title="push指令：入栈指令"></a>push指令：入栈指令</h3><p>​    例：push ax        表示将AX寄存器中的内容入栈，并修改栈顶标记</p>
+<h3 id="pop指令：出栈指令"><a href="#pop指令：出栈指令" class="headerlink" title="pop指令：出栈指令"></a>pop指令：出栈指令</h3><p>​    例：pop ax        表示将栈中低位一个字形数据出栈并赋值给AX寄存器</p>
+<h3 id="inc指令：增加1"><a href="#inc指令：增加1" class="headerlink" title="inc指令：增加1"></a>inc指令：增加1</h3><p>​    例：inc ax        表示将寄存器AX中的内容加1，相比add指令加1会节约内存</p>
+<h3 id="dec指令：减去1"><a href="#dec指令：减去1" class="headerlink" title="dec指令：减去1"></a>dec指令：减去1</h3><p>​    例：dec bx        表示将bx寄存器中的值减去1</p>
+<h3 id="and指令：与运算"><a href="#and指令：与运算" class="headerlink" title="and指令：与运算"></a>and指令：与运算</h3><p>​    例：</p>
+<p>​        mov al,00001111B</p>
+<p>​        and al,10001010B</p>
+<p>​        结果为al = 00001010 = 0AH</p>
+<p>​    与运算，将相对应的为两个为1，则结果才为1，只要有一个位的值为0，则结果为0，可用于大小写转换</p>
+<h3 id="or指令：或运算"><a href="#or指令：或运算" class="headerlink" title="or指令：或运算"></a>or指令：或运算</h3><p>​    例：</p>
+<p>​        mov al,00001111B</p>
+<p>​        or al,11110000B</p>
+<p>​        结果为al = 11111111B = FFH</p>
+<p>​    或运算，将相对应的位只要有一个是1，则运算结果为1，可以将相对应的位设置为1，其他位不变</p>
+<h3 id="dup指令：重复伪指令，通常配合DB-DW-DD使用，用来在数据段或栈段定义数据或栈的大小"><a href="#dup指令：重复伪指令，通常配合DB-DW-DD使用，用来在数据段或栈段定义数据或栈的大小" class="headerlink" title="dup指令：重复伪指令，通常配合DB,DW,DD使用，用来在数据段或栈段定义数据或栈的大小"></a>dup指令：重复伪指令，通常配合DB,DW,DD使用，用来在数据段或栈段定义数据或栈的大小</h3><p>​    例： </p>
+<p>​    data segment</p>
+<p>​        db     10dup(0)</p>
+<p>​        dw    10dup(‘123’,’abc’)</p>
+<p>​        dd    10dup(0)</p>
+<p>​    data ends</p>
+<h3 id="OFFSET：操作符，伪指令，用来取得标号处的偏移地址"><a href="#OFFSET：操作符，伪指令，用来取得标号处的偏移地址" class="headerlink" title="OFFSET：操作符，伪指令，用来取得标号处的偏移地址"></a>OFFSET：操作符，伪指令，用来取得标号处的偏移地址</h3><p>​    例：mov ax,OFFSET start    取得start标号处的偏移地址并赋值给AX寄存器</p>
+<h2 id="转移指令："><a href="#转移指令：" class="headerlink" title="转移指令："></a>转移指令：</h2><h3 id="jmp指令：转移指令，通过修改IP寄存器或CS和IP寄存器的值，来决定CPU从哪里来读取指令"><a href="#jmp指令：转移指令，通过修改IP寄存器或CS和IP寄存器的值，来决定CPU从哪里来读取指令" class="headerlink" title="jmp指令：转移指令，通过修改IP寄存器或CS和IP寄存器的值，来决定CPU从哪里来读取指令"></a>jmp指令：转移指令，通过修改IP寄存器或CS和IP寄存器的值，来决定CPU从哪里来读取指令</h3><h4 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h4><p>​    jmp指令编译后的机器码和指令长度有关，通过这种方式CPU在执行JMP指令的时候不需要跳转的目的地址就可以直线对IP寄存器的修改，只要做一个加法就好了。</p>
+<p>​    例：</p>
+<p>​    jmp s    这里内存中的数据为EB07</p>
+<p>​    mov bx,1000H</p>
+<p>​    mov bx,1001H</p>
+<p>​    mov bx,1002H</p>
+<p>  s：    mov ax,1000H</p>
+<p>​    在内存中jmp s显示的16进制数为EB07，这里的07代表了jmp指令后第一个字节的偏移地址与标号处的偏移地址相差的字节数</p>
+<p>​    问题：为什么是jmp指令后的第一个字节的偏移地址呢？为什么jmp指令CPU只需要做一个加法就好了？：</p>
+<p>​       因为CPU执行指令的过程，是先将jmp指令保存在指令缓存器中，然后IP寄存器加上所读指令的长度指向下一条指令的位置后，再去执行当前指令缓存器中的指令，所以是IP寄存器已经改变为下一条指令的偏移地址。</p>
+<p>​        在执行jmp指令后，再次修改IP寄存器的值来实现跳转，这个值是直接通过加法来计算出来jmp跳转的位置的。EB07这里的07就代表了执行jmp指令的的IP寄存器中的值，也就是下一条指令的偏移地址，加上07后的位置。</p>
+<p>​       相反，这个07位置的地址就是标号地址减去jmp指令后第一个字节的地址。</p>
+<p>​    计算机中是没有减法的，我们的减法指令或者减法计算是通过加上一个负数来计算减法的：</p>
+<p>​        这个负数是通过补码的方式来得到的，补码就是将一个正数变成二进制后按位取反（0变1，1变0）后，加上1</p>
+<p>​        例：-5：  5 = 0000 0101        取反后为11111010，然后加上1等于11111011，也就是FB</p>
+<h4 id="jmp指令的跳转范围："><a href="#jmp指令的跳转范围：" class="headerlink" title="jmp指令的跳转范围："></a>jmp指令的跳转范围：</h4><p>​         8位位移：-128~127</p>
+<p>​         16位位移：-32768~32767</p>
+<p>​    指定8位位移可直接在指令中写：jmp short s</p>
+<p>​    指定16位位移可直接在指令中写：jmp near ptr s</p>
+<p>​    jmp转移的目的地址在内存中：</p>
+<p>​        我们可以将jmp后跳转的偏移地址修改为内存中的某个数据，然后这个数据会覆盖IP寄存器或CS和IP寄存器，使用如下指令：</p>
+<p>​        jmp word ptr ds:[0]/ds:[bx]</p>
+<p>​        jmp dword ptr ds:[0]/ds:[bx]</p>
+<p>​         如上指令，我们将ds:[0]或ds:[bx]位置的字形数据用作jmp指令跳转的偏移地址。</p>
+<p>​         dword ptr 指的是两个字形数据，这时将同时修改CS和IP寄存器，修改的内容为IP寄存器覆盖数据位置的低位字节，CS寄存器覆盖数据位置的高位字节</p>
+<p>​    “jmp far ptr 标号”实现的是段间转移，又成为远转移，同时修改CS和IP寄存器的值，段内转移是只修改IP寄存器的值。</p>
+<p>jcxz指令：条件转移指令，j–&gt;jmp,cx–&gt;cx寄存器,z–&gt;zero</p>
+<p>​    当CX寄存器中的值为0的时候进行跳转。</p>
+<p>​    所有条件转移指令，都是短转移，唯一范围：-128~127</p>
+<h3 id="loop指令：条件转移指令。指令后跟标号。"><a href="#loop指令：条件转移指令。指令后跟标号。" class="headerlink" title="loop指令：条件转移指令。指令后跟标号。"></a>loop指令：条件转移指令。指令后跟标号。</h3><p>​    loop指令原理：首先将CX中的值减去1，再判断CX寄存器中的值是否为0，等于0的话执行下面的指令，不等于0的话继续循环执行</p>
+<h3 id="ret指令和retf指令："><a href="#ret指令和retf指令：" class="headerlink" title="ret指令和retf指令："></a>ret指令和retf指令：</h3><p>​    当执行ret指令时，相当于执行了pop ip，也同时修改了栈顶标记。</p>
+<p>​    当执行retf指令时，相当于执行了pop ip后执行pop cs，并修改栈顶标记。</p>
+<h3 id="call指令及用法："><a href="#call指令及用法：" class="headerlink" title="call指令及用法："></a>call指令及用法：</h3><p>​    call指令执行的步骤相当于先执行push ip，这里的IP寄存器中的值为call指令的下一条指令第一个字节的偏移地址，然后执行jmp near ptr 标号，说明call指令的转移方式也是位移的方式，但是是16位位移，位移范围-32768-32767.位移是在编译的时候编译器计算的。</p>
+<p>​    call指令通常配合ret或retf指令做为代码的组织和逻辑的切割</p>
+<p>​    转移的目的地址在指令（机器码）中的call指令：</p>
+<p>​        call far ptr 标号</p>
+<p>​        过程：</p>
+<p>​        push cs</p>
+<p>​        push ip</p>
+<p>​        jmp far ptr 标号    CS = 标号所在段的段地址    IP = 标号所在段的偏移地址</p>
+<p>​    转移的目的地址在寄存器中的call指令：</p>
+<p>​        call 寄存器</p>
+<p>​        过程：</p>
+<p>​        push ip    push call指令后第一个字节的偏移地址</p>
+<p>​        jmp 寄存器</p>
+<p>​    转移的目的地址在内存单元中的call指令：</p>
+<p>​        call word ptr 内存单元地址</p>
+<p>​        过程：</p>
+<p>​        push ip</p>
+<p>​        jmp word ptr 内存单元地址</p>
+<p>​        call dword ptr 内存单元地址</p>
+<p>​        过程：</p>
+<p>​        push cs</p>
+<p>​        push ip</p>
+<p>​        jmp dword ptr 内存单元地址</p>
+
+    </div>
+  </div>
+  
+<div class="post-catalog" id="catalog">
+  <div class="title">目录</div>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#mov指令：经常做为为寄存器或内存中赋值的指令"><span class="toc-text">mov指令：经常做为为寄存器或内存中赋值的指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#add指令：加法指令"><span class="toc-text">add指令：加法指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sub指令：减法指令"><span class="toc-text">sub指令：减法指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#div指令：除法指令"><span class="toc-text">div指令：除法指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mul指令：乘法指令"><span class="toc-text">mul指令：乘法指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#push指令：入栈指令"><span class="toc-text">push指令：入栈指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pop指令：出栈指令"><span class="toc-text">pop指令：出栈指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inc指令：增加1"><span class="toc-text">inc指令：增加1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dec指令：减去1"><span class="toc-text">dec指令：减去1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#and指令：与运算"><span class="toc-text">and指令：与运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#or指令：或运算"><span class="toc-text">or指令：或运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dup指令：重复伪指令，通常配合DB-DW-DD使用，用来在数据段或栈段定义数据或栈的大小"><span class="toc-text">dup指令：重复伪指令，通常配合DB,DW,DD使用，用来在数据段或栈段定义数据或栈的大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OFFSET：操作符，伪指令，用来取得标号处的偏移地址"><span class="toc-text">OFFSET：操作符，伪指令，用来取得标号处的偏移地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#转移指令："><span class="toc-text">转移指令：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jmp指令：转移指令，通过修改IP寄存器或CS和IP寄存器的值，来决定CPU从哪里来读取指令"><span class="toc-text">jmp指令：转移指令，通过修改IP寄存器或CS和IP寄存器的值，来决定CPU从哪里来读取指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原理："><span class="toc-text">原理：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jmp指令的跳转范围："><span class="toc-text">jmp指令的跳转范围：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#loop指令：条件转移指令。指令后跟标号。"><span class="toc-text">loop指令：条件转移指令。指令后跟标号。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ret指令和retf指令："><span class="toc-text">ret指令和retf指令：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#call指令及用法："><span class="toc-text">call指令及用法：</span></a></li></ol>
+</div>
+
+<script>
+  var catalog = null;
+  var catalogTopHeight = null;
+  function handleScoll() {
+    catalog = document.getElementById("catalog");
+    catalogTopHeight = catalog.offsetTop;
+  }
+
+  function changePos() {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    if (scrollTop > catalogTopHeight - 20) {
+      catalog.style = "position: fixed; top: 20px;"
+    } else {
+      catalog.style = "position: absolute; top: calc(290px + 88px + 30px)"
+    }
+  }
+
+  function isActiveCat() {
+    // 可宽限高度值
+    let offsetHeight = 20
+
+    // 当前页面滚动位置距页面顶部的高度值
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+
+    // 页面所有标题列表
+    let headerLinkList = document.getElementsByClassName("headerlink")
+
+    // 页面所有目录列表
+    let catLinkList = document.getElementsByClassName("toc-link")
+
+    for(let i = 0; i < catLinkList.length; i++) {
+      let currentTopCat = headerLinkList[i].offsetTop - offsetHeight
+      let nextTopCat = i + 1 === headerLinkList.length ?
+          Infinity : headerLinkList[i+1].offsetTop - offsetHeight
+
+      if (scrollTop >= currentTopCat && scrollTop < nextTopCat) {
+        catLinkList[i].className = "toc-link active"
+      } else {
+        catLinkList[i].className = "toc-link"
+      }
+    }
+  }
+
+  handleScoll();
+  isActiveCat();
+  document.addEventListener("scroll", changePos, false);
+  document.addEventListener("scroll", isActiveCat, false);
+
+</script>
+
+
+
+  
+</div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/judgehaw">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="judgehaw@163.com">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a href="https://github.com/judgehaw">Copyright © JudgeHaw 2020</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+<script>
+
+  function isHidden() {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    if (scrollTop > 0) {
+       document.querySelector(".back-to-top").className = "back-to-top";
+    } else {
+      document.querySelector(".back-to-top").className = "back-to-top hidden";
+    }
+  }
+
+  const backToTop = () => {
+    let scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop,
+      delay = 10,
+      time = 200;
+    let step = Math.ceil(scrollTop * delay / time);
+    let timer = setInterval(() => {
+      scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop - step <= 0) {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        clearInterval(timer);
+      } else {
+        document.documentElement.scrollTop = scrollTop - step;
+        document.body.scrollTop = scrollTop - step;
+      }
+    }, delay);
+  }
+
+  document.addEventListener("scroll", isHidden, false);
+  document.querySelector(".back-to-top").addEventListener("click", backToTop, false);
+</script>
+
+
+    </div>
+
+    <script async>
+  let fancyTimer = setInterval(function(){
+    if(!window.$){
+      return;
+    }
+    $(document).ready(function() {
+      $(".markdown-body img").each(function () {
+        if($(this).parent().get(0).tagName.toLowerCase() === "a") {
+          return;
+        }
+        // $(this).attr("data-fancybox", "gallery"); // if you add 'data-fancybox', img will display after showed
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "gallery");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      });
+
+      clearInterval(fancyTimer);
+    });
+  }, 10);
+</script>
+  </body>
+</html>
